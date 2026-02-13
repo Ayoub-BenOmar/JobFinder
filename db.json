@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Template",
+      "lastName": "User",
+      "email": "test@test.com",
+      "password": "123"
+    },
+    {
+      "id": "28cd",
+      "firstName": "ayoub",
+      "lastName": "ben omar",
+      "email": "ayoub@gmail.com",
+      "password": "123456"
+    },
+    {
+      "id": "5b06",
+      "firstName": "ziko",
+      "lastName": "ziko",
+      "email": "ziko@gmail.com",
+      "password": "123456"
+    }
+  ],
+  "favorites": [
+    {
+      "id": "1",
+      "userId": "1",
+      "offerId": "api-999",
+      "title": "Example Job",
+      "company": "Example Co",
+      "location": "Casablanca"
+    }
+  ],
+  "applications": [
+    {
+      "id": "1",
+      "userId": "1",
+      "offerId": "api-999",
+      "title": "Example Job",
+      "status": "en_attente",
+      "notes": "My first note",
+      "dateAdded": "2026-02-11T12:00:00Z"
+    },
+    {
+      "id": "ff04",
+      "userId": "28cd",
+      "offerId": "21157352",
+      "title": "Assistant Site Manager",
+      "company": "DoorDash",
+      "location": "Wyoming, MI",
+      "url": "https://www.themuse.com/jobs/doordash/assistant-site-manager-206c82",
+      "status": "en_attente",
+      "notes": "",
+      "dateAdded": "2026-02-13T10:53:28.786Z"
+    },
+    {
+      "id": "c88f",
+      "userId": "28cd",
+      "offerId": "20974219",
+      "title": "Account Executive, SMB UberEats, Southern California (LA-Based)",
+      "company": "Uber",
+      "location": "Remote/Unknown",
+      "url": "https://www.themuse.com/jobs/uber/account-executive-smb-ubereats-southern-california-labased",
+      "status": "en_attente",
+      "notes": "",
+      "dateAdded": "2026-02-13T11:02:33.506Z"
+    }
+  ]
+}
