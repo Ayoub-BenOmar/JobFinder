@@ -70,8 +70,8 @@ export class AuthService {
         return !!this.currentUser();
     }
 
-    updateUser(user: User): Observable<User> {
-        return this.http.put<User>(`${this.apiUrl}/${user.id}`, user).pipe(
+    updateUser(user: Partial<User> & { id: string }): Observable<User> {
+        return this.http.patch<User>(`${this.apiUrl}/${user.id}`, user).pipe(
             tap(updatedUser => {
                 this.setSession(updatedUser);
             })

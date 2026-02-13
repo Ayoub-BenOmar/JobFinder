@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(6)]] // Allow password update
+            password: ['', [Validators.minLength(6)]] // Password not required for update
         });
     }
 
@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
-                password: user.password // Ideally don't show, but requirement "Modifier ... mot de passe"
+                password: '' // Explicitly empty
             });
         }
     }
@@ -45,21 +45,27 @@ export class ProfileComponent implements OnInit {
         if (this.profileForm.invalid) return;
 
         const currentUser = this.authService.currentUser();
-        if (!currentUser) return;
+        if (!currentUser || !currentUser.id) return;
 
-        const updatedUser = {
-            ...currentUser,
-            ...this.profileForm.value
+        // Create update payload
+        const updates: any = {
+            id: currentUser.id,
+            firstName: this.profileForm.value.firstName,
+            lastName: this.profileForm.value.lastName,
+            email: this.profileForm.value.email
         };
 
-        this.authService.updateUser(updatedUser).subscribe({
+        // Only include password if user entered a new one
+        const newPassword = this.profileForm.value.password;
+        if (newPassword && newPassword.trim().length > 0) {
+            updates.password = newPassword;
+        }
+
+        this.authService.updateUser(updates).subscribe({
             next: (user) => {
                 this.successMessage = 'Profile updated successfully';
                 this.errorMessage = '';
-                // Signal/State update handled by service ideally, or we force reload
-                // If AuthService uses signal, it might need to be updated manually if it doesn't listen to this specific call.
-                // Assuming AuthService might need a refresh logic or we just re-login conceptually? 
-                // For now, simple alert.
+                this.profileForm.patchValue({ password: '' }); // Reset password field
             },
             error: (err) => {
                 this.errorMessage = 'Failed to update profile';
