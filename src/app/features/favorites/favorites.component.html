@@ -1,37 +1,41 @@
-<div class="space-y-6">
-    <div>
-        <h1 class="text-3xl font-bold text-gray-900">My Favorites</h1>
-        <p class="mt-2 text-gray-600">Jobs you have saved for later.</p>
-    </div>
-
-    <div *ngIf="isLoading$ | async" class="text-center py-10">
-        <p>Loading favorites...</p>
-    </div>
-
-    <div *ngIf="(favorites$ | async) as favorites">
-        <div *ngIf="favorites.length === 0" class="text-center py-10 text-gray-500 bg-white rounded-lg shadow">
-            You haven't saved any jobs yet.
+<div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="space-y-6">
+        <div>
+            <h1 class="text-3xl font-bold text-white">My Favorites</h1>
+            <p class="mt-2 text-gray-400">Jobs you have saved for later.</p>
         </div>
 
-        <div class="grid gap-6">
-            <div *ngFor="let fav of favorites" class="bg-white shadow overflow-hidden rounded-md px-6 py-4">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h3 class="text-lg leading-6 font-medium text-gray-900">
-                            {{ fav.title }}
-                        </h3>
-                        <p class="mt-1 text-sm text-gray-500">{{ fav.company }} • {{ fav.location }}</p>
+        <div *ngIf="isLoading$ | async" class="text-center py-10">
+            <p class="text-gray-400">Loading favorites...</p>
+        </div>
+
+        <div *ngIf="(favorites$ | async) as favorites">
+            <div *ngIf="favorites.length === 0"
+                class="text-center py-10 text-gray-500 bg-[#1e1e2f] rounded-lg shadow border border-gray-700">
+                You haven't saved any jobs yet.
+            </div>
+
+            <div class="grid gap-6">
+                <div *ngFor="let fav of favorites"
+                    class="bg-[#1e1e2f] shadow-lg overflow-hidden rounded-lg px-6 py-4 border border-gray-700 transition-all hover:border-gray-600">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-lg leading-6 font-medium text-white">
+                                {{ fav.title }}
+                            </h3>
+                            <p class="mt-1 text-sm text-gray-400">{{ fav.company }} • {{ fav.location }}</p>
+                        </div>
+                        <button (click)="removeFavorite(fav.id!)"
+                            class="text-red-400 hover:text-red-300 text-sm font-medium transition-colors">
+                            Remove
+                        </button>
                     </div>
-                    <button (click)="removeFavorite(fav.id!)"
-                        class="text-red-600 hover:text-red-800 text-sm font-medium">
-                        Remove
-                    </button>
-                </div>
-                <div class="mt-4">
-                    <a *ngIf="fav.jobDetails?.redirect_url" [href]="fav.jobDetails?.redirect_url" target="_blank"
-                        class="text-indigo-600 hover:text-indigo-900 text-sm font-medium">
-                        View Original Offer &rarr;
-                    </a>
+                    <div class="mt-4">
+                        <a *ngIf="fav.jobDetails?.redirect_url" [href]="fav.jobDetails?.redirect_url" target="_blank"
+                            class="text-[#ff4b4b] hover:text-[#ff6b6b] text-sm font-medium transition-colors">
+                            View Original Offer &rarr;
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
