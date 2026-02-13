@@ -6,11 +6,6 @@
                     <a routerLink="/" class="text-2xl font-extrabold text-[#ff4b4b] tracking-tight">JobFinder</a>
                 </div>
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a routerLink="/" routerLinkActive="border-[#ff4b4b] text-white"
-                        [routerLinkActiveOptions]="{exact: true}"
-                        class="border-transparent text-gray-400 hover:text-white hover:border-gray-500 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
-                        Home
-                    </a>
                     <a routerLink="/jobs" routerLinkActive="border-[#ff4b4b] text-white"
                         class="border-transparent text-gray-400 hover:text-white hover:border-gray-500 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">
                         Jobs
@@ -34,16 +29,19 @@
                     <span class="text-gray-300 mr-4 text-sm">Hello, <span class="font-bold text-white">{{
                             currentUser()?.firstName }}</span></span>
                     <button (click)="logout()"
-                        class="text-gray-400 hover:text-[#ff4b4b] text-sm font-medium transition-colors">Log
-                        out</button>
+                        class="bg-[#ff4b4b] hover:bg-[#d43d3d] text-white px-4 py-2 rounded-full text-sm font-bold shadow-md transition-all transform hover:scale-105">
+                        Log out
+                    </button>
                 </ng-container>
                 <ng-template #guestTemplate>
-                    <a routerLink="/login"
-                        class="text-gray-300 hover:text-white text-sm font-medium mr-4 transition-colors">Sign
-                        in</a>
-                    <a routerLink="/register"
-                        class="bg-[#ff4b4b] hover:bg-[#d43d3d] text-white px-4 py-2 rounded-full text-sm font-bold shadow-md transition-all transform hover:scale-105">Sign
-                        up</a>
+                    <ng-container *ngIf="!isAuthPage">
+                        <a routerLink="/login"
+                            class="text-gray-300 hover:text-white text-sm font-medium mr-4 transition-colors">Sign
+                            in</a>
+                        <a routerLink="/register"
+                            class="bg-[#ff4b4b] hover:bg-[#d43d3d] text-white px-4 py-2 rounded-full text-sm font-bold shadow-md transition-all transform hover:scale-105">Sign
+                            up</a>
+                    </ng-container>
                 </ng-template>
             </div>
         </div>

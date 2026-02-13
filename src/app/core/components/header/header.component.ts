@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,7 +12,12 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HeaderComponent {
     authService = inject(AuthService);
+    private router = inject(Router);
     currentUser = this.authService.currentUser;
+
+    get isAuthPage(): boolean {
+        return this.router.url === '/login' || this.router.url === '/register';
+    }
 
     logout() {
         this.authService.logout();
