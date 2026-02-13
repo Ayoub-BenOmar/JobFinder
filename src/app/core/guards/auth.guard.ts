@@ -10,5 +10,7 @@ export const authGuard: CanActivateFn = (route, state) => {
         return true;
     }
 
+    // Redirect to login page
+    console.warn('Access denied: User not authenticated');
     return router.createUrlTree(['/login']);
 };
