@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -12,6 +12,8 @@ import { AuthService } from '../../../core/services/auth.service';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+    @Output() switchMode = new EventEmitter<void>();
+
     private fb = inject(FormBuilder);
     private authService = inject(AuthService);
     private router = inject(Router);

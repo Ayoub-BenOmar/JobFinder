@@ -1,0 +1,70 @@
+<div
+    class="min-h-screen flex items-center justify-center p-4 font-sans bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] overflow-hidden relative">
+
+    <!-- Geometric Background Shapes (Decorative) -->
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-900/20 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-900/20 rounded-full blur-[100px]"></div>
+    </div>
+
+    <!-- Auth Card -->
+    <!-- Removing border, increasing size to max-w-7xl and h-[85vh] for "Big Card" effect -->
+    <div
+        class="relative bg-[#1a1a2e]/90 backdrop-blur-sm rounded-3xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.5)] w-full max-w-[1400px] h-[85vh] overflow-hidden flex z-10">
+
+        <!-- Left Panel (Login Form) -->
+        <div class="w-[65%] h-full flex flex-col justify-center p-16 transition-all duration-700 ease-in-out z-0 relative"
+            [class.translate-x-full]="isRegister" [class.opacity-0]="isRegister"
+            [class.pointer-events-none]="isRegister">
+            <app-login (switchMode)="toggleMode()"></app-login>
+        </div>
+
+        <!-- Right Panel (Register Form) -->
+        <div class="absolute top-0 right-0 w-[65%] h-full flex flex-col justify-center p-16 transition-all duration-700 ease-in-out z-0"
+            [class.translate-x-0]="isRegister" [class.translate-x-[20%]]="!isRegister" [class.opacity-100]="isRegister"
+            [class.opacity-0]="!isRegister" [class.pointer-events-none]="!isRegister">
+            <app-register (switchMode)="toggleMode()"></app-register>
+        </div>
+
+        <!-- Sliding Info/Logo Panel -->
+        <div class="absolute top-0 right-0 w-[35%] h-full transition-all duration-700 ease-in-out z-20 bg-gradient-to-br from-[#ff4b4b] to-[#b00020] text-white shadow-2xl"
+            [class.right-[65%]]="isRegister" [class.rounded-r-3xl]="!isRegister" [class.rounded-l-3xl]="isRegister">
+
+            <!-- Overlay Texture -->
+            <div
+                class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] mix-blend-overlay">
+            </div>
+
+            <!-- Content Container -->
+            <div class="relative w-full h-full flex flex-col items-center justify-center p-12 text-center">
+
+                <!-- Logo Circle -->
+                <div class="mb-8 transform hover:scale-105 transition-transform duration-300">
+                    <img src="/recruteur.png" alt="Logo" class="w-80 h-auto object-contain drop-shadow-2xl">
+                </div>
+
+                <h2 class="text-5xl font-extrabold mb-4 tracking-tight drop-shadow-sm">JobFinder</h2>
+                <p class="text-white/90 text-xl mb-12 font-light tracking-wide">
+                    {{ isRegister ? 'Welcome Back!' : 'Discover Your Future' }}
+                </p>
+
+                <p class="text-base text-white/80 mb-12 leading-relaxed max-w-xs mx-auto">
+                    {{ isRegister
+                    ? 'To keep connected with us please login with your personal info.'
+                    : 'Enter your personal details and start your journey with us.' }}
+                </p>
+
+                <button (click)="toggleMode()"
+                    class="px-10 py-3 border-2 border-white text-white rounded-full font-bold uppercase tracking-widest text-sm hover:bg-white hover:text-[#ff4b4b] transition-all duration-300 shadow-md hover:shadow-lg transform active:scale-95">
+                    {{ isRegister ? 'Sign In' : 'Sign Up' }}
+                </button>
+
+                <div class="mt-auto text-xs text-white/50">
+                    <p>&copy; 2026 JobFinder. All rights reserved.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
