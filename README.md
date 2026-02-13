@@ -117,4 +117,4 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-Made with ❤️ by [@Ayoub-BenOmar](https://github.com/Ayoub-BenOmar).
+Made with ❤️ by [Ayoub-BenOmar](https://github.com/Ayoub-BenOmar).
